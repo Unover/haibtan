@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///C:/Users/Naz/Desktop/ZAIBTECH/form/form.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Admission Form</h2>
+    <form id="admissionForm">
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required="">
+            <span class="error" id="nameError"></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required="">
+            <span class="error" id="emailError"></span>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required="">
+            <span class="error" id="phoneError"></span>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required="">
+        </div>
+        <div class="form-group">
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required="">
+                <option value="bsc">B.Sc.</option>
+                <option value="bca">BCA</option>
+                <option value="ba">BA</option>
+                <option value="bcom">B.Com</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" required=""></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("admissionForm").addEventListener("submit", function(event) {
+        let valid = true;
+        
+        // Name Validation
+        const name = document.getElementById("name").value;
+        const nameError = document.getElementById("nameError");
+        if (name.length < 3) {
+            nameError.textContent = "Name must be at least 3 characters long.";
+            valid = false;
+        } else {
+            nameError.textContent = "";
+        }
+
+        // Email Validation
+        const email = document.getElementById("email").value;
+        const emailError = document.getElementById("emailError");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            emailError.textContent = "Please enter a valid email address.";
+            valid = false;
+        } else {
+            emailError.textContent = "";
+        }
+
+        // Phone Validation
+        const phone = document.getElementById("phone").value;
+        const phoneError = document.getElementById("phoneError");
+        if (phone.length < 10 || isNaN(phone)) {
+            phoneError.textContent = "Please enter a valid phone number.";
+            valid = false;
+        } else {
+            phoneError.textContent = "";
+        }
+
+        if (!valid) {
+            event.preventDefault();  // Prevent form submission if not valid
+        }
+    });
+</script>
+
+
+</body></html>
